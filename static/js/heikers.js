@@ -64,7 +64,8 @@ function refreshSubmissionListHTML(submissionList, nsofar) {
         getSub(sid).then(
             // construct inner HTML if this is a submission
             json => {
-                if (json.hasOwnProperty("type") && json.type != "comment") {
+                if (json.hasOwnProperty("type") && json.type != "comment" && json.hasOwnProperty("id") &&
+                    json.hasOwnProperty("title") && json.hasOwnProperty("url")) {
                     appendedHTML = appendHTML(json, nsofar);
                     localStorage.setItem("mySubmissionsHTML", localStorage.getItem("mySubmissionsHTML") + appendedHTML);
                     refreshSubmissionListHTML(submissionList, nsofar + 1);
