@@ -17,7 +17,15 @@
             integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe"
             crossorigin="anonymous"></script>
     <script src="/static/js/formatTime.js" type="text/javascript"></script>
+    <script src="/static/js/heikers.js" type="text/javascript"></script>
 
+    <script type="text/javascript">
+        window.onload = function() {
+            setTimeString();
+            setHnIdButtonText();
+            updateMySubmissionsSection(false);
+        }
+    </script>
 </head>
 <body>
 <div id="Top">
@@ -48,16 +56,27 @@
                     <div class="sep5"></div>
                     <span class="fade">Yet another way to read Hacker News</span>
                 </div>
-                <div class="inner">
+                <div class="inner" id="setHnIdSection">
                     <div class="sep5"></div>
-                    <div align="center"><a href="https://news.ycombinator.com/submit"
-                                           class="super normal button">Submit</a>
+                    <div align="center"><a class="super normal button" onclick="setMyHNID()" style="cursor: pointer" id="setHNIdButton">Set Hacker News ID</a>
                         <div class="sep5"></div>
-                        <div class="sep10"></div>
-                        <a href="/signin">Set Hacker News ID</a>
                     </div>
                 </div>
             </div>
+            <div class="sep20"></div>
+
+            <div class="box">
+                <div class="cell">
+                    <span class="fade"><strong>My Submissions</strong></span>
+                </div>
+
+                <div id="mySubmissionsSection">
+                    <div class="cell">
+                        <span class="fade">Set Hacker News ID above to see your submissions</span>
+                    </div>
+                </div>
+            </div>
+
             <div class="sep20"></div>
             <div class="box">
                 <div class="cell"><span class="fade"><strong>Best Show</strong></span></div>
@@ -195,7 +214,7 @@
                                             href="https://news.ycombinator.com/user?id=mariuz">mariuz</a></strong> &nbsp;•&nbsp;
                                     <a data-timestamp="1527943469"
                                        class="submissionTimestamp"></a> &nbsp;•&nbsp;
-                                    391 points
+                                    392 points
                                 </span>
                             </td>
                         </tr>
@@ -219,7 +238,7 @@
                                             href="https://news.ycombinator.com/user?id=indescions_2018">indescions_2018</a></strong> &nbsp;•&nbsp;
                                     <a data-timestamp="1527976883"
                                        class="submissionTimestamp"></a> &nbsp;•&nbsp;
-                                    290 points
+                                    295 points
                                 </span>
                             </td>
                         </tr>
@@ -267,7 +286,7 @@
                                             href="https://news.ycombinator.com/user?id=gok">gok</a></strong> &nbsp;•&nbsp;
                                     <a data-timestamp="1527968675"
                                        class="submissionTimestamp"></a> &nbsp;•&nbsp;
-                                    235 points
+                                    237 points
                                 </span>
                             </td>
                         </tr>
@@ -501,13 +520,13 @@
                                 <span class="small fade">
                                     <a class="node" href="https://news.ycombinator.com/item?id=17217081">
                                         
-                                            29 comments
+                                            28 comments
                                         </a> &nbsp;•&nbsp;
                                     <strong><a
                                             href="https://news.ycombinator.com/user?id=smacktoward">smacktoward</a></strong> &nbsp;•&nbsp;
                                     <a data-timestamp="1527983596"
                                        class="submissionTimestamp"></a> &nbsp;•&nbsp;
-                                    104 points
+                                    106 points
                                 </span>
                             </td>
                         </tr>
@@ -575,27 +594,9 @@
         <div class="inner">
             <div class="sep10"></div>
             <strong><a href="https://www.heikers.com">heikers.com</a></strong>
-            <strong class="fr" data-timestamp="1528002604" id="pageUpdateTimestamp"></strong>
+            <strong class="fr" data-timestamp="1528003013" id="pageUpdateTimestamp"></strong>
         </div>
     </div>
 </div>
-<script type="text/javascript">
-window.onload = function() {
-    var  current_time_milliseconds = new Date().getTime();
-
-    // update the "last update" timestamp
-    var lastUpdateElement = document.getElementById("pageUpdateTimestamp");
-    var lastUpdateElementTimestamp = parseInt(lastUpdateElement.dataset.timestamp) * 1000;
-    lastUpdateElement.innerText = "Last Updated: " + millisecondsToStr(current_time_milliseconds - lastUpdateElementTimestamp) + " ago";
-
-    // update the time string for each article
-    var articleTimes = document.getElementsByClassName("submissionTimestamp");
-    for(i = 0; i < articleTimes.length; i++) {
-        var at = articleTimes[i];
-        var t = parseInt(at.dataset.timestamp)*1000;
-        at.innerText = millisecondsToStr(current_time_milliseconds - t) + " ago";
-    }
-}
-</script>
 </body>
 </html>
