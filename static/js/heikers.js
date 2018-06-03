@@ -65,12 +65,10 @@ function refreshSubmissionListHTML(submissionList, nsofar) {
             // construct inner HTML if this is a submission
             json => {
                 if (json.hasOwnProperty("type") && json.type != "comment") {
-                    console.log("construct item " + nsofar);
                     appendedHTML = appendHTML(json, nsofar);
                     localStorage.setItem("mySubmissionsHTML", localStorage.getItem("mySubmissionsHTML") + appendedHTML);
                     refreshSubmissionListHTML(submissionList, nsofar + 1);
                 } else {
-                    console.log("skipped a comment");
                     refreshSubmissionListHTML(submissionList, nsofar);
                 }
             }
@@ -135,9 +133,9 @@ function formatMySubmissionsHTML(responseJson, forceRefresh) {
 function updateMySubmissionsSection(forceRefresh) {
     var currentHNId = localStorage.getItem(myHNIdKey);
     var mySubmissionsSection = document.getElementById("mySubmissionsSection");
-    var errorHTML = `<span class='fade'>Error when pulling submissions for ${currentHNId}.</span>`;
-    var loadingHTML = "<span class='fade'>Loading <img src = '/static/img/loading.svg'></span>"
-    var noActivityHTML = `<span class='fade'>ID ${currentHNId} not found. <br><br>Or you do not have any submissions. Go <a href='https://news.ycombinator.com/submit'><strong>Submit some!</strong></a></span>`
+    var errorHTML = `<div class='cell'><span class='fade'>Error when pulling submissions for ${currentHNId}.</span></div>`;
+    var loadingHTML = "<div class='cell'><span class='fade'>Loading <img src = '/static/img/loading.svg'></span></div>";
+    var noActivityHTML = `<div class='cell'><span class='fade'>ID ${currentHNId} not found. <br><br>Or you do not have any submissions. Go <a href='https://news.ycombinator.com/submit'><strong>Submit some!</strong></a></span></div>`;
 
     if (currentHNId) {
         mySubmissionsSection.innerHTML = loadingHTML;
