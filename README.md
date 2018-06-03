@@ -1,2 +1,5 @@
 # heikers.github.io
-The heikers static site
+The heikers.com static site
+
+# Acknowledge
+## UI design is from v2ex.com
