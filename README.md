@@ -1,5 +1,5 @@
 # heikers.github.io
 The heikers.com static site
 
-# Acknowledge
-* UI design is from v2ex.com
+# Acknowledgement
+* We thank https://github.com/livid/v2ex for the UI design.
