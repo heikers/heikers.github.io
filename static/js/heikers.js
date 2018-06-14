@@ -59,7 +59,7 @@ function refreshSubmissionListHTML(submissionList, nsofar) {
         localStorage.setItem("mySubmissionsHTML", "");
     }
 
-    if (submissionList.length > 0 && nsofar < 5) {
+    if (submissionList.length > 0 && nsofar < 10) {
         var sid = submissionList.shift();
         getSub(sid).then(
             // construct inner HTML if this is a submission
