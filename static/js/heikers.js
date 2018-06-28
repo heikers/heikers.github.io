@@ -65,7 +65,7 @@ function refreshSubmissionListHTML(submissionList, nsofar) {
             // construct inner HTML if this is a submission
             json => {
                 if (json.hasOwnProperty("type") && json.type != "comment" && json.hasOwnProperty("id") &&
-                    json.hasOwnProperty("title") && json.hasOwnProperty("url")) {
+                    json.hasOwnProperty("title")) {
                     appendedHTML = appendHTML(json, nsofar);
                     localStorage.setItem("mySubmissionsHTML", localStorage.getItem("mySubmissionsHTML") + appendedHTML);
                     refreshSubmissionListHTML(submissionList, nsofar + 1);
@@ -79,13 +79,19 @@ function refreshSubmissionListHTML(submissionList, nsofar) {
 
 function appendHTML(json, nsofar) {
     var mySubmissionsSection = document.getElementById("mySubmissionsSection");
+    if (json.hasOwnProperty("url")) {
+        var url = json.url;
+    } else {
+        var url = "https://news.ycombinator.com/item?id=${json.id}";
+    }
+
     var html = `<div class="cell">
                     <table cellpadding="0" cellspacing="0" border="0" width="100%">
                         <tr>
                             <td width="auto" valign="middle">
                                 <span class="item_hot_topic_title">
                                     <a href="https://news.ycombinator.com/item?id=${json.id}" class="node"><i class="fas fa-comment"></i></a>&nbsp;
-                                    <a href="${json.url}">${json.title}</a>
+                                    <a href="${url}">${json.title}</a>
                                 </span>
                             </td>
                         </tr>
