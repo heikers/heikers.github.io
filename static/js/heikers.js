@@ -82,7 +82,7 @@ function appendHTML(json, nsofar) {
     if (json.hasOwnProperty("url")) {
         var url = json.url;
     } else {
-        var url = "https://news.ycombinator.com/item?id=${json.id}";
+        var url = "https://news.ycombinator.com/item?id=" + json.id;
     }
 
     var html = `<div class="cell">
